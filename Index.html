@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimbaWorks Digital Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #f8f8f8; }
+        .menu-card { transition: all 0.3s ease; }
+        .active-tab { border-bottom: 3px solid #b91c1c; color: #b91c1c; }
+    </style>
+</head>
+<body class="pb-24">
+
+    <header class="bg-white sticky top-0 z-50 shadow-sm p-4 flex justify-between items-center">
+        <button class="p-2"><i data-lucide="menu" class="w-6 h-6"></i></button>
+        <div class="text-center">
+            <h1 class="font-black text-xl tracking-tighter">SIMBAWORKS</h1>
+            <p class="text-[10px] uppercase tracking-widest text-gray-500">Digital Menu</p>
+        </div>
+        <div class="relative">
+            <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+        </div>
+    </header>
+
+    <div class="flex overflow-x-auto bg-white whitespace-nowrap p-4 gap-6 text-sm font-bold border-b sticky top-[72px] z-40">
+        <span class="active-tab pb-2">Swahili Specialties</span>
+        <span class="text-gray-400">Starters</span>
+        <span class="text-gray-400">Salads</span>
+        <span class="text-gray-400">Beverages</span>
+    </div>
+
+    <main class="p-4 space-y-6" id="menu-container">
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
+            <img src="https://images.unsplash.com/photo-1512058560366-cd242d4235cd?auto=format&fit=crop&w=800&q=80" alt="Nyama Choma" class="w-full h-48 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="font-bold text-lg uppercase">Nyama Choma</h3>
+                <p class="text-gray-500 text-xs mt-1">Charcoal-grilled goat or beef, with ugali and kachumbari (1/2 kg)</p>
+                <div class="mt-4 flex items-center justify-center gap-4">
+                    <span class="text-red-700 font-black">TZS 25,000</span>
+                    <button onclick="addToCart('Nyama Choma', 25000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-red-700 transition flex items-center gap-2">
+                        ORDER NOW <i data-lucide="shopping-basket" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
+            <img src="https://images.unsplash.com/photo-1544145945-f904253d0c71?auto=format&fit=crop&w=800&q=80" alt="Mocktail" class="w-full h-48 object-cover">
+            <div class="p-5 text-center">
+                <h3 class="font-bold text-lg uppercase">Tropical Fruit Mocktail</h3>
+                <p class="text-gray-500 text-xs mt-1">Refreshing watermelon and orange chilled mocktail</p>
+                <div class="mt-4 flex items-center justify-center gap-4">
+                    <span class="text-red-700 font-black">TZS 10,000</span>
+                    <button onclick="addToCart('Tropical Fruit Mocktail', 10000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-red-700 transition flex items-center gap-2">
+                        ORDER NOW <i data-lucide="shopping-basket" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-end">
+        <div class="bg-white w-full rounded-t-[3rem] p-6 max-h-[90vh] overflow-y-auto">
+            <div class="w-12 h-1.5 bg-gray-200 mx-auto rounded-full mb-6"></div>
+            <h2 class="text-2xl font-black mb-6 uppercase italic">Review Order</h2>
+            
+            <div id="cart-items" class="space-y-4 mb-8">
+                </div>
+
+            <div class="border-t pt-4 mb-6">
+                <div class="flex justify-between items-center font-black text-xl">
+                    <span>TOTAL</span>
+                    <span id="cart-total" class="text-red-700">TZS 0</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="relative">
+                    <i data-lucide="phone" class="absolute left-4 top-3.5 w-4 h-4 text-gray-400"></i>
+                    <input type="tel" id="phone" placeholder="Namba ya Simu (e.g. 0659...)" class="w-full pl-11 pr-4 py-3.5 bg-gray-50 rounded-2xl outline-none focus:ring-2 focus:ring-red-600">
+                </div>
+                
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl">
+                    <input type="checkbox" id="location-check" class="w-5 h-5 accent-red-600">
+                    <label for="location-check" class="text-sm font-bold text-gray-600">Share Delivery Location (Google Maps)</label>
+                </div>
+
+                <textarea id="note" placeholder="Order Notes (e.g. No chili, extra napkins)" class="w-full p-4 bg-gray-50 rounded-2xl outline-none h-24 text-sm"></textarea>
+
+                <button onclick="sendToWhatsApp()" class="w-full bg-red-700 text-white font-black py-4 rounded-2xl shadow-xl hover:bg-red-800 transition active:scale-95 flex items-center justify-center gap-3">
+                    SEND ORDER VIA WHATSAPP <i data-lucide="send" class="w-5 h-5"></i>
+                </button>
+                <button onclick="toggleCart()" class="w-full text-gray-400 font-bold py-2 text-sm">Cancel & Back</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="floating-btn" class="fixed bottom-6 right-6 hidden">
+        <button onclick="toggleCart()" class="bg-red-700 text-white p-5 rounded-full shadow-2xl animate-bounce">
+            <i data-lucide="shopping-cart"></i>
+        </button>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let cart = [];
+        const WHATSAPP_NUMBER = "255659112857"; // Badili kwenda namba yako
+
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            if(cart.length === 1) toggleCart(); // Fungua kikapu mara ya kwanza
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+            const floatingBtn = document.getElementById('floating-btn');
+
+            container.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-gray-50 p-4 rounded-2xl">
+                        <div>
+                            <p class="font-bold uppercase text-sm">${item.name}</p>
+                            <p class="text-red-700 font-bold text-xs">TZS ${item.price.toLocaleString()}</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeQty(${index}, -1)" class="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center font-bold text-xl">-</button>
+                            <span class="font-black">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-8 h-8 bg-white rounded-full shadow-sm flex items-center justify-center font-bold text-xl">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalEl.innerText = `TZS ${total.toLocaleString()}`;
+            countEl.innerText = count;
+            floatingBtn.classList.toggle('hidden', count === 0);
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty < 1) cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        function sendToWhatsApp() {
+            const phone = document.getElementById('phone').value;
+            const note = document.getElementById('note').value;
+            const shareLocation = document.getElementById('location-check').checked;
+
+            if (!phone) return alert("Tafadhali weka namba yako ya simu!");
+            if (cart.length === 0) return alert("Kikapu kiko wazi!");
+
+            let message = `*🆕 NEW ORDER - SIMBAWORKS*\n\n`;
+            message += `*Items:*\n`;
+            
+            let total = 0;
+            cart.forEach(item => {
+                message += `• ${item.qty}x ${item.name} - TZS ${(item.price * item.qty).toLocaleString()}\n`;
+                total += item.price * item.qty;
+            });
+
+            message += `\n*Total: TZS ${total.toLocaleString()}*`;
+            message += `\n*Customer Phone:* ${phone}`;
+            
+            if (note) message += `\n*Note:* ${note}`;
+            
+            if (shareLocation) {
+                // Tunatuma link ya kutaarifu mteja ashee location akiwa WhatsApp au tunaomba itumwe
+                message += `\n*Location:* [Inasubiri Google Maps Link]`;
+            }
+
+            message += `\n\n*Payment Method:* Payment on Delivery`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
