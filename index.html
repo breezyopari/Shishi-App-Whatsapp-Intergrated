@@ -10,8 +10,7 @@
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #f8f8f8; }
         .menu-card { transition: all 0.3s ease; }
-        .active-tab { border-bottom: 3px solid #db2777; color: #db2777; }
-        .hidden-category { display: none; }
+        .active-tab { border-bottom: 3px solid #db2777; color: #db2777; font-weight: 800; }
     </style>
 </head>
 <body class="pb-24">
@@ -28,109 +27,127 @@
         </div>
     </header>
 
-    <div class="flex overflow-x-auto bg-white whitespace-nowrap p-4 gap-6 text-sm font-bold border-b sticky top-[72px] z-40">
-        <button onclick="filterMenu('all', this)" class="active-tab pb-2">Zote</button>
-        <button onclick="filterMenu('wali-ugali', this)" class="text-gray-400 pb-2">Wali & Ugali</button>
-        <button onclick="filterMenu('biriani', this)" class="text-gray-400 pb-2">Biriani</button>
-        <button onclick="filterMenu('makange', this)" class="text-gray-400 pb-2">Makange & Samaki</button>
+    <div class="flex overflow-x-auto bg-white whitespace-nowrap p-4 gap-6 text-sm font-bold border-b sticky top-[72px] z-40 no-scrollbar">
+        <button onclick="filterMenu('all', this)" class="active-tab pb-2 px-2">Zote</button>
+        <button onclick="filterMenu('wali-ugali', this)" class="text-gray-400 pb-2 px-2">Wali, Ugali & Chips</button>
+        <button onclick="filterMenu('biriani', this)" class="text-gray-400 pb-2 px-2">Biriani</button>
+        <button onclick="filterMenu('makange', this)" class="text-gray-400 pb-2 px-2">Makange & Samaki</button>
     </div>
 
-    <main class="p-4 space-y-6" id="menu-container">
+    <main class="p-4 space-y-4" id="menu-container">
         
-        <div class="menu-item wali-ugali bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Wali/Ugali Kuku Rost Kienyeji</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 12,000</span>
-                    <button onclick="addToCart('Wali/Ugali Kuku Rost Kienyeji', 12000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item wali-ugali bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Wali/Ugali Kuku Rost Kienyeji</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 12,000</p>
             </div>
+            <button onclick="addToCart('Wali/Ugali Kuku Rost Kienyeji', 12000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item wali-ugali bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Chips Kuku</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 12,000</span>
-                    <button onclick="addToCart('Chips Kuku', 12000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item wali-ugali bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Wali/Ugali Nyama Rost</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 8,000</p>
             </div>
+            <button onclick="addToCart('Wali/Ugali Nyama Rost', 8000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item wali-ugali bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Chips Yai</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 6,000</span>
-                    <button onclick="addToCart('Chips Yai', 6000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item wali-ugali bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Chips Kuku</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 12,000</p>
             </div>
+            <button onclick="addToCart('Chips Kuku', 12000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item biriani bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Biriani Kuku Local</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 15,000</span>
-                    <button onclick="addToCart('Biriani Kuku Local', 15000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item wali-ugali bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Chips Mayai</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 6,000</p>
             </div>
+            <button onclick="addToCart('Chips Mayai', 6000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item biriani bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Biriani Mbuzi</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 12,000</span>
-                    <button onclick="addToCart('Biriani Mbuzi', 12000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item biriani bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Biriani Kuku Local</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 15,000</p>
             </div>
+            <button onclick="addToCart('Biriani Kuku Local', 15000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item makange bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Makange Kuku Kienyeji (Nusu)</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 20,000</span>
-                    <button onclick="addToCart('Makange Kuku Kienyeji Nusu', 20000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item biriani bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Biriani Mbuzi</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 12,000</p>
             </div>
+            <button onclick="addToCart('Biriani Mbuzi', 12000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
-        <div class="menu-item makange bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 menu-card">
-            <div class="p-5 text-center">
-                <h3 class="font-bold text-lg uppercase">Samaki Changu Mkavu na Ugali/Wali</h3>
-                <div class="mt-4 flex items-center justify-center gap-4">
-                    <span class="text-pink-700 font-black">TZS 10,000</span>
-                    <button onclick="addToCart('Samaki Changu Mkavu', 10000)" class="bg-black text-white px-6 py-2 rounded-full text-xs font-bold hover:bg-pink-700 transition">ORDER NOW</button>
-                </div>
+        <div class="menu-item biriani bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Biriani Nyama</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 10,000</p>
             </div>
+            <button onclick="addToCart('Biriani Nyama', 10000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
+        </div>
+
+        <div class="menu-item makange bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Makange Kuku Kienyeji (Nusu)</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 20,000</p>
+            </div>
+            <button onclick="addToCart('Makange Kuku Kienyeji Nusu', 20000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
+        </div>
+
+        <div class="menu-item makange bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Makange Nyama</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 15,000</p>
+            </div>
+            <button onclick="addToCart('Makange Nyama', 15000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
+        </div>
+
+        <div class="menu-item makange bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Samaki Changu Mkavu na Ugali/Wali</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 10,000</p>
+            </div>
+            <button onclick="addToCart('Samaki Changu Mkavu', 10000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
+        </div>
+
+        <div class="menu-item makange bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="flex-1 text-left">
+                <h3 class="font-bold text-sm uppercase">Samaki Sato Mkavu</h3>
+                <p class="text-pink-700 font-black text-sm">TZS 15,000</p>
+            </div>
+            <button onclick="addToCart('Samaki Sato Mkavu', 15000)" class="bg-black text-white px-4 py-2 rounded-xl text-[10px] font-bold">AGIZA</button>
         </div>
 
     </main>
 
     <div id="cart-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-end">
-        <div class="bg-white w-full rounded-t-[3rem] p-6 max-h-[90vh] overflow-y-auto">
+        <div class="bg-white w-full rounded-t-[3rem] p-6 max-h-[90vh] overflow-y-auto shadow-2xl">
             <div class="w-12 h-1.5 bg-gray-200 mx-auto rounded-full mb-6"></div>
-            <h2 class="text-2xl font-black mb-6 uppercase italic text-gray-900">Review Order</h2>
+            <h2 class="text-2xl font-black mb-6 uppercase italic text-gray-900">Oda Yako</h2>
             <div id="cart-items" class="space-y-4 mb-8"></div>
             <div class="border-t pt-4 mb-6">
                 <div class="flex justify-between items-center font-black text-xl">
-                    <span>TOTAL</span>
+                    <span>JUMLA</span>
                     <span id="cart-total" class="text-pink-700">TZS 0</span>
                 </div>
             </div>
             <div class="space-y-4">
-                <input type="tel" id="phone" placeholder="Namba ya Simu" class="w-full p-4 bg-gray-50 rounded-2xl outline-none focus:ring-2 focus:ring-pink-600">
-                <textarea id="note" placeholder="Maelezo ya ziada (e.g. Hapana pilipili)" class="w-full p-4 bg-gray-50 rounded-2xl outline-none h-24 text-sm"></textarea>
-                <button onclick="sendToWhatsApp()" class="w-full bg-pink-600 text-white font-black py-4 rounded-2xl shadow-xl">SEND ORDER TO WHATSAPP</button>
-                <button onclick="toggleCart()" class="w-full text-gray-400 font-bold py-2 text-sm">Cancel & Back</button>
+                <input type="tel" id="phone" placeholder="Namba ya Simu" class="w-full p-4 bg-gray-50 rounded-2xl outline-none border focus:border-pink-600">
+                <textarea id="note" placeholder="Maelezo (mf. Bila pilipili)" class="w-full p-4 bg-gray-50 rounded-2xl outline-none h-24 text-sm border"></textarea>
+                <button onclick="sendToWhatsApp()" class="w-full bg-pink-600 text-white font-black py-4 rounded-2xl shadow-lg">TUMA ODA WHATSAPP</button>
+                <button onclick="toggleCart()" class="w-full text-gray-400 font-bold py-2 text-sm">Rudi Nyuma</button>
             </div>
         </div>
     </div>
 
-    <div id="floating-btn" class="fixed bottom-6 right-6 hidden">
-        <button onclick="toggleCart()" class="bg-pink-600 text-white p-5 rounded-full shadow-2xl animate-bounce">
+    <div id="floating-btn" class="fixed bottom-6 right-6 hidden z-50">
+        <button onclick="toggleCart()" class="bg-pink-600 text-white p-5 rounded-full shadow-2xl animate-bounce flex items-center justify-center">
             <i data-lucide="shopping-cart"></i>
         </button>
     </div>
@@ -143,14 +160,12 @@
         function filterMenu(category, element) {
             const items = document.querySelectorAll('.menu-item');
             const tabs = document.querySelectorAll('button');
-            
             tabs.forEach(tab => tab.classList.remove('active-tab', 'text-gray-900'));
             tabs.forEach(tab => tab.classList.add('text-gray-400'));
             element.classList.add('active-tab', 'text-gray-900');
-
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
+                    item.style.display = 'flex';
                 } else {
                     item.style.display = 'none';
                 }
@@ -171,16 +186,15 @@
             const floatingBtn = document.getElementById('floating-btn');
             container.innerHTML = '';
             let total = 0; let count = 0;
-
             cart.forEach((item, index) => {
                 total += item.price * item.qty;
                 count += item.qty;
                 container.innerHTML += `<div class="flex justify-between items-center bg-gray-50 p-4 rounded-2xl">
-                    <div><p class="font-bold text-sm uppercase">${item.name}</p></div>
+                    <div class="flex-1"><p class="font-bold text-xs uppercase">${item.name}</p></div>
                     <div class="flex items-center gap-3">
-                        <button onclick="changeQty(${index}, -1)" class="w-8 h-8 bg-white rounded-full font-bold">-</button>
-                        <span class="font-black">${item.qty}</span>
-                        <button onclick="changeQty(${index}, 1)" class="w-8 h-8 bg-white rounded-full font-bold">+</button>
+                        <button onclick="changeQty(${index}, -1)" class="w-8 h-8 bg-white rounded-full border shadow-sm">-</button>
+                        <span class="font-black text-sm">${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="w-8 h-8 bg-white rounded-full border shadow-sm">+</button>
                     </div>
                 </div>`;
             });
@@ -201,13 +215,13 @@
             const phone = document.getElementById('phone').value;
             const note = document.getElementById('note').value;
             if (!phone) return alert("Weka namba ya simu!");
-            let message = `*🆕 NEW ORDER - SHISHI FOOD POINT*\n\n`;
+            let message = `*🆕 ODA MPYA - SHISHI FOOD*\n\n`;
             let total = 0;
             cart.forEach(item => {
                 message += `• ${item.qty}x ${item.name} - TZS ${(item.price * item.qty).toLocaleString()}\n`;
                 total += item.price * item.qty;
             });
-            message += `\n*Total: TZS ${total.toLocaleString()}*\n*Simu:* ${phone}\n*Note:* ${note || 'N/A'}`;
+            message += `\n*JUMLA: TZS ${total.toLocaleString()}*\n*Simu:* ${phone}\n*Maelezo:* ${note || 'N/A'}`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
